@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     void Start() 
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        //유니티에서 오브젝트의 Rigidbody를 이 스크립트와 연결하면 playerRigidbody에 할당
     }
 
     void Update()
@@ -27,8 +28,6 @@ public class PlayerController : MonoBehaviour
         //{ playerRigidbody.AddForce(speed, 0f, 0f); }
         //if (Input.GetKey(KeyCode.LeftArrow) == true) // 좌측 방향키 입력 감지시 -x방향 힘 추가
         //{ playerRigidbody.AddForce(-speed, 0f, 0f); }
-        //if (Input.GetKey(KeyCode.Space) == true) // 점프ㅋㅋ
-        //{ playerRigidbody.AddForce(0f, speed, 0f); }
 
         // 조작감 개선하기
         float xInput = Input.GetAxis("Horizontal");
