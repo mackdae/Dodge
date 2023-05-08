@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SnowMan : MonoBehaviour
 {
-    public Rigidbody snowManRigidbody;
     public float speed = 10f;
+    public Rigidbody snowManRigidbody;
+    public GameManager gameManager;
+    public Animator snowManAni;
+    bool dead; // 죽음여부
 
     void Update()
     {
@@ -17,23 +20,14 @@ public class SnowMan : MonoBehaviour
         // 수평축 수직축 입력여부 * 스피드
         snowManRigidbody.velocity = new Vector3(xSpeed, 0f, zSpeed);
 
-        // 예제에서 변수를 하나 더 거치는 이유가 뭘까?
-        //Vector3 newVelocity = new Vector3(xSpeed, 0f, zSpeed);
-        //snowManRigidbody.velocity = newVelocity;
-        // Vector3 속도를 (xSpeed, 0, zSpeed)로 생성
-        // 리지드바디의 속도에 newVelocity 할당
+        if (dead) { snowManRigidbody.velocity = new Vector3(0f, 0f, 0f); }
+        // 죽음 트루면 제자리 정지
     }
 
     public void Die()
     {
-        //gameObject.SetActive(false);
-        // 게임오브젝트 비활성화
-        // 디스트로이로 안 하는 이유가 있나?
-        Destroy(gameObject);
-        // 이부분을 스케일 애니메이션으로 하고 싶어
-
-        //GameManager gameManager = FindObjectOfType<GameManager>();
-        // GameManager 타입의 오브젝트를 찾아서 gameManager에 할당
-        //gameManager.EndGame(); // gameManager의 EndGame()메소드 실행
+        dead = true;
+        snowManAni.SetBool("Dead", true); // 멜트 애니 재생
+        gameManager.Gameover(); // gameManager의 Gameover()메소드 실행
     }
 }

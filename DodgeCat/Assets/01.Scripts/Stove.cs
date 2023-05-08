@@ -6,11 +6,12 @@ public class Stove : MonoBehaviour
 {
     public GameObject fire; // 프리팹 연결할 변수
     public Transform target; // 타겟(위치) 연결할 변수
+
     public float spawnRateMin = 1f; // 최소 생성주기
     public float spawnRateMax = 4f; // 최대 생성주기
-    // 퍼블릭은 인스펙터에 보임
+
     private float spawnRate; // 생성 주기
-    private float timeAfterSpawn; //최근 생성시점에서 경과시간
+    private float timeAfterSpawn; // 생성후 경과시간
 
     void Start()
     {
